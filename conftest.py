@@ -25,6 +25,7 @@ def pytest_addoption(parser):
 
 @pytest.fixture
 def SAM(request):
+    print("Setup")
     browser = request.config.getoption("--browser")
     if browser.lower() == 'chrome':
         driver = webdriver.Chrome()
@@ -37,5 +38,6 @@ def SAM(request):
     driver.get("https://demowebshop.tricentis.com/")
     sleep(3)
     yield driver
+    print("TearDown")
     sleep(2)
     driver.close()
